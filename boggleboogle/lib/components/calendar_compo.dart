@@ -4,6 +4,7 @@ import 'dart:collection';
 import 'dart:async';
 //import 'dart:ffi';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 import 'package:intl/intl.dart';
@@ -14,7 +15,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CalendarCom extends StatefulWidget {
   final mail;
-  const CalendarCom({Key? key, required this.mail}) : super(key: key);
+  final totoday;
+  const CalendarCom({Key? key, required this.mail, required this.totoday})
+      : super(key: key);
   @override
   State<CalendarCom> createState() => _CalendarComState();
 }
@@ -24,32 +27,40 @@ class _CalendarComState extends State<CalendarCom> {
   String? day_return;
   String? is_done;
 
-  _getdata() async {
+  _getData() async {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       user_id = user?.email;
-      print(user_id);
+      if (kDebugMode) {
+        print(user_id);
+      }
     });
   }
 
   Map<String, String> calen = {};
-  List<String> datelist = [];
+  List<String> dateList = [];
 
-  _listdate() async {
+  _listDate() async {
+    final user = FirebaseAuth.instance.currentUser;
     String? eid;
+
     final userRef = await FirebaseFirestore.instance
         .collection("users")
         .doc(widget.mail)
         .collection("Dates");
     await userRef.get().then((value) {
-      value.docs.forEach((element) {
-        datelist.add(element.id);
+      for (var element in value.docs) {
+        dateList.add(element.id);
         eid = element.id;
-        print(eid);
-        print(datelist);
-      });
+        if (kDebugMode) {
+          print(eid);
+        }
+        if (kDebugMode) {
+          print(dateList);
+        }
+      }
     });
 
-    datelist.forEach((element) {
+    for (var element in dateList) {
       final user2Ref = FirebaseFirestore.instance
           .collection("users")
           .doc(widget.mail)
@@ -57,17 +68,23 @@ class _CalendarComState extends State<CalendarCom> {
           .doc(element);
       user2Ref.get().then((DocumentSnapshot doc) {
         calen[element] = doc['isDone'];
-        print("출력");
-        print(element);
-        print(calen[element]);
+        if (kDebugMode) {
+          print("출력");
+        }
+        if (kDebugMode) {
+          print(element);
+        }
+        if (kDebugMode) {
+          print(calen[element]);
+        }
       });
-    });
+    }
   }
 
   @override
   void initState() {
     super.initState();
-    _listdate().then((value) {});
+    _listDate().then((value) {});
   }
 
   @override
@@ -76,7 +93,7 @@ class _CalendarComState extends State<CalendarCom> {
         future: _futures(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasData == false) {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           } else {
             return _calendar();
           }
@@ -101,10 +118,14 @@ class _CalendarComState extends State<CalendarCom> {
           future = calen[day_return];
           //print(future);
           if (future == "0") {
-            print("read 실행");
+            if (kDebugMode) {
+              print("read 실행");
+            }
             return ['boggle', 'boogle'];
           } else if (future == "1") {
             return ['hi'];
+          } else if (widget.totoday == "1" && DateTime.now().day == day.day) {
+            return ['boggle', 'boogle'];
           }
           return [];
         },
@@ -119,19 +140,24 @@ class _CalendarComState extends State<CalendarCom> {
             //String? ref = readdate(day_return);
             //print(ref);
             //String? ref;
-            print(events);
+            if (kDebugMode) {
+              print(events);
+            }
             if (events.length > 1) {
-              print("만들어짐");
+              if (kDebugMode) {
+                print("만들어짐");
+              }
               return Align(
-                alignment: Alignment(0.0, 1.7),
+                alignment: const Alignment(0.0, 1.7),
                 child: _boggle(),
               );
-            } else if (events.length > 0) {
+            } else if (events.isNotEmpty) {
               return Align(
-                alignment: Alignment(0.0, 1.7),
+                alignment: const Alignment(0.0, 1.7),
                 child: _boogle(),
               );
             }
+
             /*Future.delayed(Duration(milliseconds: 15000), () {
               if (events.length > 3) {
                 print("만들어짐");
@@ -167,34 +193,34 @@ class _CalendarComState extends State<CalendarCom> {
             //캘린더 요일 영어에서 한국어로 변경 및 색 변경
             switch (day.weekday) {
               case 1:
-                return Center(
+                return const Center(
                   child: Text('월'),
                 );
               case 2:
-                return Center(
+                return const Center(
                   child: Text('화'),
                 );
               case 3:
-                return Center(
+                return const Center(
                   child: Text('수'),
                 );
               case 4:
-                return Center(
+                return const Center(
                   child: Text('목'),
                 );
               case 5:
-                return Center(
+                return const Center(
                   child: Text('금'),
                 );
               case 6:
-                return Center(
+                return const Center(
                   child: Text(
                     '토',
                     style: TextStyle(color: Colors.blue),
                   ),
                 );
               case 7:
-                return Center(
+                return const Center(
                   child: Text(
                     '일',
                     style: TextStyle(color: Colors.red),
@@ -203,7 +229,7 @@ class _CalendarComState extends State<CalendarCom> {
             }
           },
         ),
-        calendarStyle: CalendarStyle(
+        calendarStyle: const CalendarStyle(
           defaultTextStyle: TextStyle(
             color: Color.fromARGB(255, 141, 166, 140),
           ),
@@ -222,7 +248,7 @@ class _CalendarComState extends State<CalendarCom> {
             //backgroundColor: Color.fromARGB(255, 141, 166, 140)
           ),
         ),
-        headerStyle: HeaderStyle(
+        headerStyle: const HeaderStyle(
           formatButtonVisible: false,
           titleCentered: true,
         ),
@@ -241,40 +267,41 @@ class _CalendarComState extends State<CalendarCom> {
     });
   }*/
 
-  void searchdoc() {}
+  void searchDoc() {}
 
   _delay() async {
     await Future.delayed(const Duration(milliseconds: 500));
   }
 
   Widget _boggle() {
-    return Container(
+    return SizedBox(
       //margin: EdgeInsets.all(10),
-      child: Image.asset(
-          '/Users/gyul/Documents/GitHub/gyuls-bogleboogle/boggleboogle/assets/images/boggle-cutout.png'),
       width: 40,
       height: 40,
+      //margin: EdgeInsets.all(10),
+      child: Image.asset(
+          'assets/images/boggle.png'),
     );
   }
 
   Widget _boogle() {
-    return Container(
+    return SizedBox(
       //margin: EdgeInsets.all(10),
-      child: Image.asset(
-          '/Users/gyul/github_Sourcetree/new_booggle/bogleboogle/boggleboogle/assets/images/boogle.png'),
-      //child: Icon(Icons.favorite_border_outlined, color: Colors.red),
       width: 40,
       height: 40,
+      //margin: EdgeInsets.all(10),
+      child: Image.asset(
+          'assets/images/boogle.png'),
     );
   }
 
   Future _futures() async {
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     return '빌드 시작';
   }
 
   Future _load() async {
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     return '빌드 시작';
   }
 }

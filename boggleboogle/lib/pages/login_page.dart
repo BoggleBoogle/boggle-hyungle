@@ -23,8 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _passwordController = TextEditingController();
 
   // 로그인 폼 상단에 이미지가 표시된다. 이미지가 없어도 동작은 하나, X표시 처리.
-  String _imageFile =
-      '/Users/gyul/github_Sourcetree/new_booggle/bogleboogle/boggleboogle/assets/images/boggle-cutout.png';
+  final String _imageFile = 'assets/images/boggle.png';
 
   Widget _userIdWidget() {
     return TextFormField(
@@ -131,7 +130,7 @@ class _LoginPageState extends State<LoginPage> {
         );
         final data = _emailController.text;
 
-        Get.off(() => CalendarPage(mail: data));
+        Get.off(() => CalendarPage(mail: data, totoday: null,));
       } on FirebaseAuthException catch (e) {
         logger.e(e);
         String message = '';

@@ -29,8 +29,7 @@ class _JoinPageState extends State<JoinPage> {
   final TextEditingController _nickController = TextEditingController();
 
   // 로그인 폼 상단에 이미지가 표시된다. 이미지가 없어도 동작은 하나, X표시 처리.
-  String _imageFile =
-      '/Users/gyul/github_Sourcetree/new_booggle/bogleboogle/boggleboogle/assets/images/boggle-cutout.png';
+  final String _imageFile = 'assets/images/boggle.png';
 
   Widget _userIdWidget() {
     return TextFormField(
@@ -172,10 +171,10 @@ class _JoinPageState extends State<JoinPage> {
         return value;
       });
       //database upload
+      final user = FirebaseAuth.instance.currentUser;
 
-      final userRef = FirebaseFirestore.instance
-          .collection("users")
-          .doc(_emailController.text);
+      final userRef =
+          FirebaseFirestore.instance.collection("users").doc(user!.uid);
       userRef.set({
         'id': _emailController.text,
         'name': _nameController.text,
@@ -184,7 +183,7 @@ class _JoinPageState extends State<JoinPage> {
 
       FirebaseAuth.instance.currentUser?.sendEmailVerification();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text("회원가입에 성공했습니다."),
           backgroundColor: Colors.green,
         ),
@@ -208,7 +207,9 @@ class _JoinPageState extends State<JoinPage> {
         ),
       );
     } catch (e) {
-      print('끝');
+      if (kDebugMode) {
+        print('끝');
+      }
     }
   }
 }

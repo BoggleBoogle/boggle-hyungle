@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:boggleboogle/model/user.dart';
+import 'package:intl/intl.dart';
+import 'package:table_calendar/table_calendar.dart';
+import 'package:get/get.dart';
 import 'package:boggleboogle/components/bottom_icon_button.dart';
 import 'package:boggleboogle/components/round_icon_button.dart';
+import 'package:get/utils.dart';
+import 'package:boggleboogle/components/friends_calendar.dart';
+import 'my_home_page.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key, required this.user}) : super(key: key);
@@ -67,12 +73,7 @@ class ProfileScreen extends StatelessWidget {
               Navigator.pop(context);
             },
           ),
-          actions: [
-            RoundIconButton(icon: FontAwesomeIcons.gift),
-            SizedBox(width: 15),
-            RoundIconButton(icon: FontAwesomeIcons.cog),
-            SizedBox(width: 20),
-          ],
+          actions: [],
         ),
       ),
     );
@@ -85,13 +86,6 @@ class ProfileScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           BottomIconButton(
-            icon: FontAwesomeIcons.comment,
-            text: "나와의 채팅",
-          ),
-          SizedBox(
-            width: 50,
-          ),
-          BottomIconButton(
             icon: FontAwesomeIcons.pen,
             text: "프로필 편집",
           ),
@@ -102,20 +96,23 @@ class ProfileScreen extends StatelessWidget {
 
   Widget _buildFriendIcons() {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 18),
+      padding: EdgeInsets.symmetric(vertical: 23),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          BottomIconButton(
-            icon: FontAwesomeIcons.comment,
-            text: "1:1채팅",
-          ),
-          SizedBox(
-            width: 50,
-          ),
-          BottomIconButton(
-            icon: FontAwesomeIcons.phone,
-            text: "통화하기",
+          TextButton.icon(
+            icon: Icon(
+              Icons.calendar_month,
+              size: 50,
+              color: Colors.white,
+            ),
+            label: Text(
+              "캘린더 구경가기",
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
+            onPressed: () {
+              Get.to(() => FriendCompo());
+            },
           ),
         ],
       ),
