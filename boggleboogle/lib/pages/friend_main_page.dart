@@ -4,6 +4,12 @@ import 'chat_page.dart';
 import 'friend_page.dart';
 
 class FriendMainScreen extends StatefulWidget {
+  final mail;
+  FriendMainScreen({
+    Key? key,
+    @required this.mail,
+  }) : super(key: key);
+
   @override
   _FriendMainScreenState createState() => _FriendMainScreenState();
 }
@@ -14,6 +20,14 @@ class _FriendMainScreenState extends State<FriendMainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+      body: FriendScreen(mail: widget.mail),
+    );
+  }
+}
+
+/*
+Scaffold(
       body: IndexedStack(
         index: _selectedIndex,
         children: [
@@ -45,5 +59,4 @@ class _FriendMainScreenState extends State<FriendMainScreen> {
         ],
       ),
     );
-  }
-}
+ */

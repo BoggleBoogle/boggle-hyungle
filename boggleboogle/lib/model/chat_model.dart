@@ -13,21 +13,21 @@ class Chat {
       required this.count});
 }
 
-final String _urlPrefix =
+const String _urlPrefix =
     "https://raw.githubusercontent.com/flutter-coder/ui_images/master/messenger";
 
 List<Chat> chats = [
   Chat(
     image: "${_urlPrefix}_man_1.jpg",
-    title: "홍길동",
-    content: "오늘 저녁에 시간 되시나요?",
+    title: "김인페",
+    content: "혹시 프로그래밍 동아리에 관심 있으세요?",
     time: "오후 11:00",
     count: "0",
   ),
   Chat(
     image: "${_urlPrefix}_woman_1.jpg",
-    title: "정도전",
-    content: "오늘 날씨가 참 맑네요.",
+    title: "이세종",
+    content: "종이 하이",
     time: "오전 09:30",
     count: "1",
   ),

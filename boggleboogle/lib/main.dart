@@ -44,10 +44,12 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  initializeDateFormatting().then((_) => runApp(MyApp()));
+  initializeDateFormatting().then((_) => runApp(const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -55,108 +57,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: MyHomePage(),
-    );
-  }
-}
-/*
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(const MyApp());
-}
-
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: '로그인 앱',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
       home: const MyHomePage(),
     );
   }
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  dispose() async {
-    super.dispose();
-  }
-}*/
-
-
-/*
-class StartPage extends StatefulWidget {
-  @override
-  _StartPageState createState() => _StartPageState();
 }
-
-class _StartPageState extends State<StartPage> {
-  //iconList
-  int _selectedIndex = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('보글부글'),
-        backgroundColor: Color.fromARGB(255, 171, 199, 100),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Color.fromARGB(255, 171, 199, 100),
-        selectedItemColor: Color.fromARGB(255, 32, 87, 40),
-        unselectedItemColor: Colors.grey.withOpacity(.60),
-        selectedFontSize: 14,
-        unselectedFontSize: 14,
-        currentIndex: _selectedIndex, //현재 선택된 Index
-        onTap: (int index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-        items: [
-          //네비게이션 바 코드
-          BottomNavigationBarItem(
-            label: 'Calendar',
-            icon: Icon(Icons.calendar_month),
-          ),
-          BottomNavigationBarItem(
-            label: 'Camera',
-            icon: Icon(Icons.camera),
-          ),
-          BottomNavigationBarItem(
-            label: 'Friends',
-            icon: Icon(Icons.people),
-          ),
-          BottomNavigationBarItem(
-            label: 'setting',
-            icon: Icon(Icons.settings),
-          ),
-        ],
-      ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-    );
-  }
-}
-
-List _widgetOptions = [
-  CalendarPage(),
-  CameraPage(),
-  FriendsPage(),
-  SettingPage(),
-];*/

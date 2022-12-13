@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "C:\\Users\\uhhyunjoo\\workspace\\Github\\hyun-boggle\\boggleboogle\\build\\app\\intermediates\\merged_res\\debug\\mipmap-mdpi_bogleboogle_icon.png.flat",
+        "source": "C:\\Users\\uhhyunjoo\\workspace\\Github\\hyun-boggle\\boggleboogle\\android\\app\\src\\main\\res\\mipmap-mdpi\\bogleboogle_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\uhhyunjoo\\workspace\\Github\\hyun-boggle\\boggleboogle\\build\\app\\intermediates\\merged_res\\debug\\mipmap-xhdpi_bogleboogle_icon.png.flat",
+        "source": "C:\\Users\\uhhyunjoo\\workspace\\Github\\hyun-boggle\\boggleboogle\\android\\app\\src\\main\\res\\mipmap-xhdpi\\bogleboogle_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\uhhyunjoo\\workspace\\Github\\hyun-boggle\\boggleboogle\\build\\app\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_bogleboogle_icon.png.flat",
+        "source": "C:\\Users\\uhhyunjoo\\workspace\\Github\\hyun-boggle\\boggleboogle\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\bogleboogle_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\uhhyunjoo\\workspace\\Github\\hyun-boggle\\boggleboogle\\build\\app\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_bogleboogle_icon.png.flat",
+        "source": "C:\\Users\\uhhyunjoo\\workspace\\Github\\hyun-boggle\\boggleboogle\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\bogleboogle_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\uhhyunjoo\\workspace\\Github\\hyun-boggle\\boggleboogle\\build\\app\\intermediates\\merged_res\\debug\\drawable-v21_launch_background.xml.flat",
+        "source": "C:\\Users\\uhhyunjoo\\workspace\\Github\\hyun-boggle\\boggleboogle\\android\\app\\src\\main\\res\\drawable-v21\\launch_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\uhhyunjoo\\workspace\\Github\\hyun-boggle\\boggleboogle\\build\\app\\intermediates\\merged_res\\debug\\mipmap-hdpi_bogleboogle_icon.png.flat",
+        "source": "C:\\Users\\uhhyunjoo\\workspace\\Github\\hyun-boggle\\boggleboogle\\android\\app\\src\\main\\res\\mipmap-hdpi\\bogleboogle_icon.png"
+    }
+]
